@@ -1,14 +1,15 @@
+
+//---------------------------------------------VARIABLES------------------------------------
 //Human Anatomy themed words
 var hangmanWords=["disco","brain","groovie","phalanges"];
 
 //CREATES THE VARIABLE THAT WILL HOLD THE WORD
-var word2Guess=hangmanWords[0];
+var word2Guess=hangmanWords[0]; 
 
 //ARRAY WILL HOLD THE WORD TO BE GUESSED
 var word2Array=word2Guess.split('');
 
-//BLANK ARRAY WILL BE THE SAME SIZE AS ARRAY HOLDING THE WORD
-var blankArray=new Array(word2Array.length);
+
 
 //NUMBER OF GUESSES ALLOWED
 var guessesAllowed=7;
@@ -21,33 +22,43 @@ var guessesWrong=new Array(guessesAllowed);
 //CREATING COUNTER for the guessesWrong array allows to move w/in
 var x=0;
 
-//var to check if there are any _ left in the blank array
-
-var blanks;
-
-
-var continueGame;
-
-//WINS
+//KEEPS TRACK OF WINS
 var wins=0;
 
+//STORES THE USERS DECISION TO CONTINUE OR END THE GAME
+var continueGame;
 
-//ADDING BLANKS TO THE BLANK ARRAY 
-for(var i=0; i< word2Array.length; i++)
+//EXITING THE WHILE LOOP
+var End=false;
+
+
+//------------------------------------ADDING "_"---------------------------------------------------------
+
+function insertBlankarray()
 {
-	blankArray [i]= "_";
+	//ADDING BLANKS TO THE BLANK ARRAY 
+	for(var i=0; i< word2Array.length; i++)
+	{
+		 var blankArray [i]= "_";
+	}
+	return blankArray
+
 }
 
-//ADDING UDERSCORES TO GUESSARRAY
-for(var i=0; i< guessesAllowed; i++)
+function insertBlanksguesses()
 {
-	guessesWrong [i]= "_";
+	//ADDING UDERSCORES TO GUESSARRAY
+	for(var i=0; i< guessesAllowed; i++)
+	{
+		var guessesWrongFunction [i]= "_";
+	}
+	return guessesWrongFunction;
 }
 
+//------------------------------------------ONKEYUP FUNCTION-----------------------------------------------
 
 
-
-///START THE GAME ONCE A LETTER IS PRESSED
+//START THE GAME ONCE A LETTER IS PRESSED
 document.onkeyup = function(event)
 {
 
@@ -68,6 +79,8 @@ document.onkeyup = function(event)
 		if(word2Array[i]===userGuess)
 		{
 			blankArray[i]=userGuess;
+			blanks[i]=userGuess;
+
 			match=true;
 		}
 
@@ -83,29 +96,38 @@ document.onkeyup = function(event)
 		x++;	
 	}
 
-	//CHEKING IF USER HAS GUESSED ALL THE LETERS IN ARRAY BLANKS=-1
-	blanks=blankArray.indexOf("_");
 
-	if(blanks<0)
-	{
-		continueGame=alert("Congratulations you have won this match! Would you like another word?")
-		wins++;	
-	}
+	//if()
+	//{
+		//continueGame=confirm("Congratulations you have won this match! Would you like another word?");
+		//wins++;	
 
-	if (guessesRemaining<=0)
-	{
-		continueGame=prompt("Better luck next time! Would you like to guess another word?")
-	}
+		//if(continueGame)
+		//{
+			
+			//y++;
+			
 
-//CHECKING 
-console.log("remaindG: "+ guessesRemaining);
-console.log("wrongG: "+ guessesWrong);
-console.log("blankarray: "+ blankArray);
+		//}
+		//else
+		//{
+			//End=true
+		//}
 
-console.log("blanks: " +blanks);
+	//}
 
-
-
+	//if (guessesRemaining<=0)
+	//{
+		//continueGame=confirm("Better luck next time! Would you like to guess another word?")
+		//if(continueGame)
+		//{
+			//y++;
+		//}
+		//else
+		//{
+			//End=true
+		//}
+	//}
 
 	
 }
@@ -115,6 +137,14 @@ console.log("blanks: " +blanks);
 
 
 //-----------------------------------------------------------
-
+//BLANK ARRAY WILL BE THE SAME SIZE AS ARRAY HOLDING THE WORD
+//var blankArray=new Array(word2Array.length);
+//copying THE RETURN ARRAY
+//var word2Guess=newword2Guess(u).slice();
+	//CHEKING IF USER HAS GUESSED ALL THE LETERS IN ARRAY BLANKS=-1
+	//blanks=blankArray.indexOf("_");
 //while((guessesRemainding!=0) || (blanks!=0)  {}
+	//while (End=true)
+//{
+	//}
 	
