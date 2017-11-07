@@ -128,9 +128,14 @@ console.log("blankArray after for loop check: " + blankArray);
 console.log("guessesWrong after wrong letter: " + guessesWrong);
 console.log("gyessesReainingafter first mistake "+ guessesRemaining);
 	}
-	if (lettersGuessed=youWin)
+
+
+	//user wins or looses
+	if (lettersGuessed===youWin)
 	{
 
+		continueGame=prompt("Congrats, you have won ")
+		
 	}
 	
 
