@@ -21,8 +21,10 @@ var lettersGuessed=0;
 var wins=0;
 //STORES THE USERS DECISION TO CONTINUE OR END THE GAME
 var continueGame;
+//this will be the counter to move through the words in the hangman array
+var nextWord=0;
 //EXITING THE WHILE LOOP
-var End=false;
+var endGame=false;
 
 
 
@@ -66,7 +68,7 @@ function insertBlanksguesses()
 
 
 //CALLING FUNCTION FOR FIRST TIME THE GAME RUNS
-newWord2guess(0);
+newWord2guess(nextWord);
 
 
 //CHECKING
@@ -130,15 +132,43 @@ console.log("gyessesReainingafter first mistake "+ guessesRemaining);
 	}
 
 
-	//user wins or looses
+	//IF USER WINS
 	if (lettersGuessed===youWin)
 	{
 
-		continueGame=prompt("Congrats, you have won ")
+		continueGame=confirm("Congrats, you have won! Would you like to guess another word?");
+		wins++;
+
+		if(continueGam=true)
+		{
+			nextWord++;
+			newWord2guess(nextWord);
+			lettersGuessed=0;
+			guessesRemaining=7;
+		}
+		else{
+			endGame=true;
+		}
 		
 	}
-	
+	//IF PLAYER RUNS OUT OF guesses
+	if (guessesRemaining===0)
+	{
+		continueGame=confirm("You have run out of guesses,better luck next time! Would you like to guess another word?");
 
+		if(continueGam=true)
+		{
+			nextWord++;
+			newWord2guess(nextWord);
+			lettersGuessed=0;
+			guessesRemaining=7;
+			x=0;
+		}
+
+		else{
+			endGame=true;
+		}
+	}
 	
 }
 
