@@ -13,11 +13,10 @@ var guessesAllowed=7;
 var guessesRemaining=7;
 //ARRAY WILL HOLD THE USER'S WRONG GUESSES
 var guessesWrong=new Array(guessesAllowed);
-//CHECKS IF GUESS MATCHES THE STIRNG IN INDEX.
-var match= false;
 //CREATING COUNTER for the guessesWrong array allows to move w/in
 var x=0;
 //CHECKING TO SEE IF THERE ARE ANY  "_" REMAINING IN THE BLANK ARRAY
+var lettersGuessed=0;
 //KEEPS TRACK OF WINS
 var wins=0;
 //STORES THE USERS DECISION TO CONTINUE OR END THE GAME
@@ -71,9 +70,9 @@ newWord2guess(0);
 
 
 //CHECKING
-alert("word2arrayb4 onkey: "+ word2Array);
-alert("blankArray b4 "+ blankArray);
-alert("guessesWrong b4: " +guessesWrong);
+console.log("word2arrayb4 onkey: "+ word2Array);
+console.log("blankArray b4 "+ blankArray);
+console.log("guessesWrong b4: " +guessesWrong);
 //------------------------------------------ONKEYUP FUNCTION-----------------------------------------------
 
 
@@ -84,6 +83,16 @@ document.onkeyup = function(event)
 	//USER GUESS
 	userGuess= event.key;
 	console.log(userGuess);	
+	//CHECKS IF GUESS MATCHES THE STIRNG IN INDEX.
+	var match= false;	
+	//you win 
+	var youWin=word2Array.length
+//CHECK
+console.log("youWin" + youWin);
+
+
+
+
 
 
 	//TO DO:add a check for space and non letter before start
@@ -94,15 +103,19 @@ document.onkeyup = function(event)
 		if(word2Array[i]===userGuess)
 		{
 			blankArray[i]=userGuess;
-			
-
+			lettersGuessed++;
+//CHECKING
+console.log("letter" + lettersGuessed);
 			match=true;
+
 		}
 
 	}
 
+
 //CHEKING
-alert("blankArray after for loop check: " + blankArray);
+console.log("blankArray after for loop check: " + blankArray);
+
 
 	//IF WRONG GUESS SUBTRACT FROM THE GUESSES REMAINDING
 	if(match===false)
@@ -111,43 +124,15 @@ alert("blankArray after for loop check: " + blankArray);
 		guessesWrong[x]=userGuess;
 		guessesRemaining--;
 		x++;	
-	}
 //CHECKING
-alert("guessesWrong after wrong letter: " + guessesWrong);
-alert("gyessesReainingafter first mistake "+ guessesRemaining);
+console.log("guessesWrong after wrong letter: " + guessesWrong);
+console.log("gyessesReainingafter first mistake "+ guessesRemaining);
+	}
+	if (lettersGuessed=youWin)
+	{
 
+	}
 	
-	//if()
-	//{
-		//continueGame=confirm("Congratulations you have won this match! Would you like another word?");
-		//wins++;	
-
-		//if(continueGame)
-		//{
-			
-			//y++;
-			
-
-		//}
-		//else
-		//{
-			//End=true
-		//}
-
-	//}
-
-	//if (guessesRemaining<=0)
-	//{
-		//continueGame=confirm("Better luck next time! Would you like to guess another word?")
-		//if(continueGame)
-		//{
-			//y++;
-		//}
-		//else
-		//{
-			//End=true
-		//}
-	//}
 
 	
 }
@@ -158,12 +143,5 @@ alert("gyessesReainingafter first mistake "+ guessesRemaining);
 
 //-----------------------------------------------------------
 
-//copying THE RETURN ARRAY
-//var word2Guess=newword2Guess(u).slice();
-	//CHEKING IF USER HAS GUESSED ALL THE LETERS IN ARRAY BLANKS=-1
-	//blanks=blankArray.indexOf("_");
-//while((guessesRemainding!=0) || (blanks!=0)  {}
-	//while (End=true)
-//{
-	//}
+
 
