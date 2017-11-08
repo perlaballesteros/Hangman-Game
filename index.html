@@ -16,6 +16,9 @@
 	
 		<!--Linking to boostrap viewport-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--GOOGLE FONTS-->
+
+		<link href="https://fonts.googleapis.com/css?family=Pacifico|Patrick+Hand" rel="stylesheet">
 		<!--jQuery-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -24,32 +27,52 @@
 
 	<body>
 
-		<div>
-			<h1>Press any key to get started!<span id="currentWord"><strong>Nothing</strong></span></h1>
-		</div>
+		<div id="Maincontent">
+			<header>
+				<h1 id="title">Hangman</h1>
+				<h6 id="sub">The Human Anatomy</h6>
+			</header>
 
-		<div>
-			<h1>Wins:</h1>
-		</div>
-		<div id="winsShow"></div>
-		<div>
-			<h1>Current Word</h1>
-		</div>
-		<div id="currentWordshow"></div>
+			<div id="hangman">
+				
+			</div>
 
-		<div>
-			<h1>Number of guesses remaining: </h1>
-		</div>
-		<div id="numberGuessesshow"></div>
+			<div id="right">
 
-		<div>
-			<h1>Letters already guessed:</h1>
-		</div>
-		<div id="lettersGuessedshow"></div>
+				<div id="pressKey">
+					<h1 >Press Any Key to Get Started!</h1>
+				</div>
+
+				<div>
+					<h1>Wins</h1>
+				</div>
+
+				<div id="winsShow"></div>
+
+				<div>
+					<h1>Current Word</h1>
+				</div>
+
+				<div id="currentWordshow"></div>
+
+				<div>
+					<h1>Number of Guesses Remaining </h1>
+				</div>
+
+				<div id="numberGuessesshow"></div>
+
+				<div>
+					<h1>Letters Already Guessed</h1>
+				</div>
+
+				<div id="lettersGuessedshow"></div>
+			</div>
+
+
 		
 
 
-
+		</div>
 		<!--linking to javascript>-->
 		<script type="text/javascript" src="assets/javascript/game.js"></script>
 		
