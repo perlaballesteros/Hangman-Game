@@ -101,18 +101,27 @@ function checkingUserguess()
 //CALLING FUNCTION FOR FIRST TIME THE GAME RUNS
 newWord2guess(nextWord);
 
+//REPORTING WINS TO HTML DIV #winsShow
+
+$("#winsShow").text(wins);
+
 //BLANK ARRAY AND GUESSESWRONG SHOULD BE REPORTED HERE FOR THE FIRST TIME
 //THE PROGRAM RUNS THEN IT SHOULD BE REPLACED WITH THE ONE IN ON KEY FUNCTION
 //.join(" ") prints arrays without commas 
 console.log(blankArray.join(" "));
+$("#currentWordshow").text(blankArray.join(" "));
+//GUESSES WRONG ARRAY
 console.log(guessesWrong.join(" "));
-
+$("#lettersGuessedshow").text(guessesWrong.join(" "));
+//Number of Guesses Remaining
+$("#numberGuessesshow").text(guessesRemaining);
 
 
 
 //START THE GAME ONCE A LETTER IS PRESSED
 document.onkeyup = function(event)
 {
+	
 
 	//USER GUESS IS TRUNED TO LOWERCASE
 	userGuess= String.fromCharCode(event.keyCode).toLowerCase();
@@ -145,12 +154,12 @@ document.onkeyup = function(event)
 				blankArray[i]=userGuess;
 				lettersGuessed++;
 				match=true;
-
 			}
 			
 		}
-		//REPORT VALUE OF BLANK ARRAY TO REVEAL ALL THE LETTERS GUESSED
+		//REPORT VALUE OF BLANK ARRAY TO REVEAL ALL THE LETTERS GUESSED IN THE CURRENTWORDSHOWDIV
 		console.log(blankArray.join(" "));
+		$("#currentWordshow").text(blankArray.join(" "));
 
 	
 		//IF WRONG GUESS SUBTRACT FROM THE GUESSES REMAINDING
@@ -158,7 +167,6 @@ document.onkeyup = function(event)
 		if(match===false && userWrongguessRepeated===false)
 		{
 			//REPLACING ARRAY BLANK WITH USER GUESS
-
 			guessesWrong[x]=userGuess;
 			x++;
 			guessesRemaining--;
@@ -167,7 +175,7 @@ document.onkeyup = function(event)
 		}
 		//REPORT GUESSES REMAINING HER TO SHOW ALL OF THE LETTERS GUESSED
 		console.log(guessesWrong.join(" "));
-		console.log("guesses remaining "+ guessesRemaining);
+		$("#lettersGuessedshow").text(guessesWrong.join(" "));
 
 		//IF USER WINS
 		if (lettersGuessed===youWin)
@@ -175,6 +183,9 @@ document.onkeyup = function(event)
 
 			continueGame=confirm("Congrats, you have won! Would you like to guess another word?");
 			wins++;
+			
+			//REPORTING WINS BY REPLACING PREVIOUSLY REPORTED DIV #winsShow
+			
 
 			if(continueGam=true)
 			{
@@ -182,6 +193,16 @@ document.onkeyup = function(event)
 				newWord2guess(nextWord);
 				lettersGuessed=0;
 				guessesRemaining=7;
+				$("#winsShow").text(wins);
+			
+				//STARTING NEW WORD NEED TO REPORT BLANK ARRAYS
+				console.log(blankArray.join(" "));
+				$("#currentWordshow").text(blankArray.join(" "));
+				//GUESSES WRONG ARRAY
+				console.log(guessesWrong.join(" "));
+				$("#lettersGuessedshow").text(guessesWrong.join(" "));
+				//Number of Guesses Remaining
+				$("#numberGuessesshow").text(guessesRemaining);
 			}
 	
 		
@@ -205,6 +226,14 @@ document.onkeyup = function(event)
 				guessesRemaining=7;
 				//REINITIALIZING IN ORDER TO GO BACK TO THE START OF THE GUESSEDWORDS ARRAY FOR THE NEW WORD
 				x=0;
+				//STARTING NEW WORD NEED TO REPORT BLANK ARRAYS
+				console.log(blankArray.join(" "));
+				$("#currentWordshow").text(blankArray.join(" "));
+				//GUESSES WRONG ARRAY
+				console.log(guessesWrong.join(" "));
+				$("#lettersGuessedshow").text(guessesWrong.join(" "));
+				//Number of Guesses Remaining
+				$("#numberGuessesshow").text(guessesRemaining);
 			}
 
 				
