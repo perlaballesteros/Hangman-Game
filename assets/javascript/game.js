@@ -1,4 +1,3 @@
-
 //-----------GLOBALVARIABLES---------------------------
 //Human Anatomy themed words
 var hangmanWords=["brain","brain","groovie","phalanges"];
@@ -6,7 +5,7 @@ var hangmanWords=["brain","brain","groovie","phalanges"];
 var word2Guess;
 //WILL WORD2GUESS AS AN ARRAY TYPE
 var word2Array;
-//AN ARRAY WITH "_"
+//AN ARRAY WITH "_" THIS IS THE ARRAY THAT WILL BE REPORTED TO THE HTML
 var blankArray;
 //CHECKS IF GUESS MATCHES THE STIRNG IN INDEX.
 var match= false;	
@@ -46,6 +45,8 @@ function newWord2guess(s)
 	insertBlankarray();
 }
 
+
+
 function insertBlankarray()
 {
 	//ADDING BLANKS TO THE BLANK ARRAY 
@@ -57,6 +58,7 @@ function insertBlankarray()
 
 }
 
+
 function insertBlanksguesses()
 {
 	//ADDING UDERSCORES TO GUESSARRAY
@@ -66,10 +68,6 @@ function insertBlanksguesses()
 	}
 
 }
-
-
-//CALLING FUNCTION FOR FIRST TIME THE GAME RUNS
-newWord2guess(nextWord);
 
 
 function checkingUserguess()
@@ -98,16 +96,26 @@ function checkingUserguess()
 }
 
 
+//-----------------------------------------------------------------------------------------
 
-//------------------------------------------ONKEYUP FUNCTION-----------------------------------------------
+//CALLING FUNCTION FOR FIRST TIME THE GAME RUNS
+newWord2guess(nextWord);
+
+//BLANK ARRAY AND GUESSESWRONG SHOULD BE REPORTED HERE FOR THE FIRST TIME
+//THE PROGRAM RUNS THEN IT SHOULD BE REPLACED WITH THE ONE IN ON KEY FUNCTION
+//.join(" ") prints arrays without commas 
+console.log(blankArray.join(" "));
+console.log(guessesWrong.join(" "));
+
+
 
 
 //START THE GAME ONCE A LETTER IS PRESSED
 document.onkeyup = function(event)
 {
 
-	//USER GUESS
-	userGuess= event.key;
+	//USER GUESS IS TRUNED TO LOWERCASE
+	userGuess= String.fromCharCode(event.keyCode).toLowerCase();
 	console.log(userGuess);
 
 	//BEFORE FUNCTION SO PREVIOUS GUESS DOEN'T AFFECT NEW(IMPORTANT)
@@ -141,8 +149,9 @@ document.onkeyup = function(event)
 			}
 			
 		}
+		//REPORT VALUE OF BLANK ARRAY TO REVEAL ALL THE LETTERS GUESSED
+		console.log(blankArray.join(" "));
 
-		
 	
 		//IF WRONG GUESS SUBTRACT FROM THE GUESSES REMAINDING
 		//THIS ONE BELOW SHOULD RUN THE FIRST TIME THE GAME IS PLAYED AND WHEN NO REPEATED WORDS
@@ -156,12 +165,9 @@ document.onkeyup = function(event)
 			
 			
 		}
-
-		
-		console.log("---------------------------");
-		console.log("lettersGuessed" + lettersGuessed);
-		console.log("youWin" + youWin);
-		console.log("--------------------------------");
+		//REPORT GUESSES REMAINING HER TO SHOW ALL OF THE LETTERS GUESSED
+		console.log(guessesWrong.join(" "));
+		console.log("guesses remaining "+ guessesRemaining);
 
 		//IF USER WINS
 		if (lettersGuessed===youWin)
@@ -203,12 +209,6 @@ document.onkeyup = function(event)
 
 				
 		}
-	console.log("---------------------------");
-	console.log("Word to guess "+ word2Array);
-	console.log("blankArray "+ blankArray);
-	console.log("wrong guesses " + guessesWrong);
-	console.log("guesses remaining "+ guessesRemaining);
-	console.log("---------------------------");	
 		
 	}
 					
@@ -225,14 +225,5 @@ document.onkeyup = function(event)
 }//onkey function
 
 //----------------------
-//if(match===false && userWrongguessRepeated===true)
-		//{
-			////REPLACING ARRAY BLANK WITH USER GUESS
-			//guessesWrong[x]=userGuess;
-			//x++;
-			//console.log(2);
-			
-			
-		//}
 
 

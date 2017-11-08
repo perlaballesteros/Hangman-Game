@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>
-			Perla E. Ballesteros About Tab
+			Perla E. Ballesteros Hangman-Game
 		</title>
 
 		<!--reset css style to this html-->
@@ -13,27 +13,43 @@
 		<!--Linking the css style to this html-->
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-		<!--linking to javascript>-->
-		<script type="text/javascript" src="assets/javascript/game.js"></script>
-		
+	
 		<!--Linking to boostrap viewport-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+		<!--jQuery-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	</head>
 
 
 	<body>
-		<!--<h1>Press any key to get started!</h1>
-		<h1>Wins:</h1>
-		<h1>Number of guesses remaining: </h1>
-		<h1>Letters already guessed:</h1>-->
+
+		<div>
+			<h1>Press any key to get started!<span id="currentWord"><strong>Nothing</strong></span></h1>
+		</div>
+
+		<div>
+			<h1>Wins:</h1>
+		</div>
+
+		<div>
+			<h1>Current Word</h1>
+		</div>
+
+		<div>
+			<h1>Number of guesses remaining: </h1>
+		</div>
+
+		<div>
+			<h1>Letters already guessed:</h1>
+		</div>
+		
 
 
 
-
-
-
+		<!--linking to javascript>-->
+		<script type="text/javascript" src="assets/javascript/game.js"></script>
+		
 	</body>
 
 </html>
