@@ -30,7 +30,11 @@ var wordAlreadyguessed=false;
 var userWrongguessRepeated;
 //losses
 var losses=0;
+//?
 
+var isAlphabetCharacter = function(userGuess) {
+  return (letter.length === 1) && /[a-z]/i.test(letter);
+}
 //------------------------------------FUNCTIONS---------------------------------------------------------
 function newWord2guess(s)
 {
@@ -120,7 +124,6 @@ $("#numberGuessesshow").text(guessesRemaining);
 
 
 
-
 //START THE GAME ONCE A LETTER IS PRESSED
 document.onkeyup = function(event)
 {
@@ -130,6 +133,7 @@ document.onkeyup = function(event)
 	userGuess= String.fromCharCode(event.keyCode).toLowerCase();
 	console.log(userGuess);
 
+
 	//BEFORE FUNCTION SO PREVIOUS GUESS DOEN'T AFFECT NEW(IMPORTANT)
 	userWrongguessRepeated=false;	
 	match=false;
@@ -138,8 +142,8 @@ document.onkeyup = function(event)
 	//GET ARRAYS THAT HOLD THE "_"
 	checkingUserguess();
 	
-
-	if(wordAlreadyguessed===false)
+	//IF USER GUESS IS NOT REPEATED AND IF USER  MATCH IS A LETTEER RUN THE CODE
+	if(wordAlreadyguessed===false && userGuess.match(/[a-z]/i))
 	{
 	
 		//WIN IF YOU WIN IS EQUAL TO THE LENGTH OF THE ARRAY WITH THE WORD THAT IS BEING GUESSED
