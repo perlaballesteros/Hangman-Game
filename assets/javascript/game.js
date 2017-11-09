@@ -28,8 +28,8 @@ var nextWord=0;
 var wordAlreadyguessed=false;
 //STORES BOOLEAN TO CHECK IF USER'S GUESS IS REPEATED
 var userWrongguessRepeated;
-
-
+//losses
+var losses=0;
 
 //------------------------------------FUNCTIONS---------------------------------------------------------
 function newWord2guess(s)
@@ -104,6 +104,8 @@ newWord2guess(nextWord);
 //REPORTING WINS TO HTML DIV #winsShow
 
 $("#winsShow").text(wins);
+//LOSSES
+$("#lossesShow").text(losses);
 
 //BLANK ARRAY AND GUESSESWRONG SHOULD BE REPORTED HERE FOR THE FIRST TIME
 //THE PROGRAM RUNS THEN IT SHOULD BE REPLACED WITH THE ONE IN ON KEY FUNCTION
@@ -115,6 +117,7 @@ console.log(guessesWrong.join(" "));
 $("#lettersGuessedshow").text(guessesWrong.join(" "));
 //Number of Guesses Remaining
 $("#numberGuessesshow").text(guessesRemaining);
+
 
 
 
@@ -186,9 +189,12 @@ document.onkeyup = function(event)
 			var canvas = document.getElementById("canvas");
 
 			var ctx = canvas.getContext("2d");
+		
+
 			ctx.fillStyle="#FFFFFF"
 		
 			//structure
+			ctx.beginPath();
 			ctx.fillRect(30,130,140,5);
 
 			ctx.fillRect(40,20,5,110);
@@ -198,6 +204,8 @@ document.onkeyup = function(event)
 			ctx.fillRect(20,20,90,5);
 
 			ctx.fillRect(130,20,5,10);
+			ctx.stroke();
+  			ctx.closePath();
 		}
 		if(guessesRemaining===5)
 		{
@@ -213,6 +221,7 @@ document.onkeyup = function(event)
   				ctx.arc(x, y, radius, 0, Math.PI * 2, false);
 
   				ctx.stroke();
+  				ctx.closePath();
   			};
 
   			ctx.lineWidth = 4;
@@ -227,7 +236,10 @@ document.onkeyup = function(event)
 			var canvas = document.getElementById("canvas");	
 			var ctx = canvas.getContext("2d");
 			ctx.fillStyle="#FFFFFF"
+			ctx.beginPath();
 			ctx.fillRect(130,50,5,40);
+			ctx.stroke();
+			ctx.closePath();
 		}
 
 		if(guessesRemaining===3)
@@ -246,6 +258,7 @@ document.onkeyup = function(event)
 			ctx.lineTo(115, 115);
 
 			ctx.stroke()
+			ctx.closePath();
 		}
 
 		if(guessesRemaining===2)
@@ -265,6 +278,7 @@ document.onkeyup = function(event)
 			ctx.lineTo(149, 115);
 
 			ctx.stroke()
+			ctx.closePath();
 		}
 
 
@@ -285,6 +299,7 @@ document.onkeyup = function(event)
 			ctx.lineTo(149,60);
 
 			ctx.stroke()
+			ctx.closePath();
 		}
 
 		if(guessesRemaining===0)
@@ -303,7 +318,10 @@ document.onkeyup = function(event)
 			ctx.lineTo(115,60);
 
 			ctx.stroke()
+			ctx.closePath();
+
 		}
+	}
 
 		
 		//IF USER WINS
@@ -327,15 +345,16 @@ document.onkeyup = function(event)
 			$("#lettersGuessedshow").text(guessesWrong.join(" "));
 			//Number of Guesses Remaining
 			$("#numberGuessesshow").text(guessesRemaining);	
-			
-	
+			//clearing the canvas
+			//clearing the canvas
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
 		
 		}
 
 		//IF PLAYER RUNS OUT OF guesses
 		if (guessesRemaining===0)
 		{
-
+			losses++;
 			//ADDING ONE IN ORDER TO ACCESS THE NEXT WORD
 			nextWord++;
 			//CALING THE FUNCTIONS TO RECEIVE THE NEXT WORD
@@ -354,12 +373,12 @@ document.onkeyup = function(event)
 			$("#lettersGuessedshow").text(guessesWrong.join(" "));
 			//Number of Guesses Remaining
 			$("#numberGuessesshow").text(guessesRemaining);
-			
-
-				
+			//clearing the canvas
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			$("#lossesShow").text(losses);
 		}
 		
-	}
+	
 					
 	if(wordAlreadyguessed===true)
 	{
