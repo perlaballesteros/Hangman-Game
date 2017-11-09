@@ -179,6 +179,132 @@ document.onkeyup = function(event)
 		//Number of Guesses Remaining
 		$("#numberGuessesshow").text(guessesRemaining);
 
+
+		//DRAWING HANGMAN
+		if(guessesRemaining===6)
+		{
+			var canvas = document.getElementById("canvas");
+
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle="#FFFFFF"
+		
+			//structure
+			ctx.fillRect(30,130,140,5);
+
+			ctx.fillRect(40,20,5,110);
+
+			ctx.fillRect(40,20,90,5);
+
+			ctx.fillRect(20,20,90,5);
+
+			ctx.fillRect(130,20,5,10);
+		}
+		if(guessesRemaining===5)
+		{
+			//head
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle="#FFFFFF"
+      	
+			var circle = function (x, y, radius) {
+
+  				ctx.beginPath();
+
+  				ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+
+  				ctx.stroke();
+  			};
+
+  			ctx.lineWidth = 4;
+
+			ctx.strokeStyle = "#FFFFFF";
+
+			circle(132.5, 40, 10);
+		}
+
+		if(guessesRemaining===4)
+		{
+			var canvas = document.getElementById("canvas");	
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle="#FFFFFF"
+			ctx.fillRect(130,50,5,40);
+		}
+
+		if(guessesRemaining===3)
+		{
+			var canvas = document.getElementById("canvas");
+      	
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle="#FFFFFF"
+
+			ctx.lineWidth = 4;
+
+			ctx.beginPath();
+		
+			ctx.moveTo(132, 90);
+
+			ctx.lineTo(115, 115);
+
+			ctx.stroke()
+		}
+
+		if(guessesRemaining===2)
+		{
+			//leg2
+
+			var canvas = document.getElementById("canvas");
+      	
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle="#FFFFFF"
+
+			ctx.lineWidth = 4;
+
+			ctx.beginPath();
+			ctx.moveTo(132, 90);
+
+			ctx.lineTo(149, 115);
+
+			ctx.stroke()
+		}
+
+
+		if(guessesRemaining===1)
+		{
+			//arm1
+
+			var canvas = document.getElementById("canvas");
+      	
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle="#FFFFFF"
+
+			ctx.lineWidth = 4;
+
+			ctx.beginPath();
+			ctx.moveTo(132, 70);
+
+			ctx.lineTo(149,60);
+
+			ctx.stroke()
+		}
+
+		if(guessesRemaining===0)
+		{
+			//arm2
+		 	var canvas = document.getElementById("canvas");
+      		
+			var ctx = canvas.getContext("2d");
+			ctx.fillStyle="#FFFFFF"
+
+			ctx.lineWidth = 4;
+
+			ctx.beginPath();
+			ctx.moveTo(132, 70);
+
+			ctx.lineTo(115,60);
+
+			ctx.stroke()
+		}
+
 		
 		//IF USER WINS
 		if (lettersGuessed===youWin)
