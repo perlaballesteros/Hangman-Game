@@ -1,6 +1,8 @@
 //-----------GLOBALVARIABLES---------------------------
 //Human Anatomy themed words
-var hangmanWords=["brain","brain","groovie","phalanges"];
+var hangmanWords=["nose","aorta","liver","spleen"];
+var hints=["I sometimes run, but I cannot walk. You always follow me around. What am I?", "The largest and the main artery of the circulatory system","Produces digestive juice called bile.","largest lymphatic organ."];
+var hintcount=0;
 //HOLD THE STRING OF THE WORD IN THE HANGMANWORDS
 var word2Guess;
 //WILL WORD2GUESS AS AN ARRAY TYPE
@@ -30,11 +32,8 @@ var wordAlreadyguessed=false;
 var userWrongguessRepeated;
 //losses
 var losses=0;
-//?
+//hint
 
-var isAlphabetCharacter = function(userGuess) {
-  return (letter.length === 1) && /[a-z]/i.test(letter);
-}
 //------------------------------------FUNCTIONS---------------------------------------------------------
 function newWord2guess(s)
 {
@@ -304,6 +303,19 @@ document.onkeyup = function(event)
 
 			ctx.stroke()
 			ctx.closePath();
+
+
+			var hintDiv=$("<div>");
+			hintDiv.attr("id","hintDiv");
+
+			//GIVING THE USER A HINT
+			$("#hintDiv").html("<h1>Hint</h1>");
+
+			$("#hintDiv").on("click", function() {
+
+        		$("#hintDiv").text(hints[hintcount]);
+      		});
+      		
 		}
 
 		if(guessesRemaining===0)
@@ -324,7 +336,10 @@ document.onkeyup = function(event)
 			ctx.stroke()
 			ctx.closePath();
 
+
 		}
+
+		
 	}
 
 		
@@ -334,7 +349,8 @@ document.onkeyup = function(event)
 
 			//continueGame=confirm("Congrats, you have won! Would you like to guess another word?");
 			wins++;
-		
+			x=0;
+			hintcount++;
 			nextWord++;
 			newWord2guess(nextWord);
 			lettersGuessed=0;
@@ -352,6 +368,8 @@ document.onkeyup = function(event)
 			//clearing the canvas
 			//clearing the canvas
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			//CLEARING THE HINT DIV
+			$("#hintDiv").empty();
 		
 		}
 
@@ -359,6 +377,7 @@ document.onkeyup = function(event)
 		if (guessesRemaining===0)
 		{
 			losses++;
+			hintcount++;
 			//ADDING ONE IN ORDER TO ACCESS THE NEXT WORD
 			nextWord++;
 			//CALING THE FUNCTIONS TO RECEIVE THE NEXT WORD
@@ -380,6 +399,9 @@ document.onkeyup = function(event)
 			//clearing the canvas
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			$("#lossesShow").text(losses);
+			//CLEARING THE HINT DIV
+			$("#hintDiv").empty();
+		
 		}
 		
 	

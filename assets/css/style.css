@@ -87,5 +87,11 @@ h1{
 #currentWord{
 	clear:both;
 }
+#hintDiv{
+	margin:30px auto;
+	background-color: #FF8F69;
+	font-family: 'Pacifico', cursive;
+	font-size: 30px;
 
+}
 
