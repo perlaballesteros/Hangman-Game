@@ -32,9 +32,14 @@ var wordAlreadyguessed=false;
 var userWrongguessRepeated;
 //losses
 var losses=0;
-//hint
-
+//sound for userGuess right
+var guessRightSound=new Audio("assets/sounds/Input-04b.mp3");
+var guessWrongSound=new Audio("assets/sounds/Input-05.mp3");
+var winSound=new Audio("assets/sounds/Alert-05.mp3");
+var lossSound=new Audio("assets/sounds/Alert-10.mp3");
+var hintSound=new Audio("assets/sounds/Alert-01.mp3")
 //------------------------------------FUNCTIONS---------------------------------------------------------
+
 function newWord2guess(s)
 {
 	//CREATES THE VARIABLE THAT WILL HOLD THE WORD
@@ -113,10 +118,8 @@ $("#lossesShow").text(losses);
 //BLANK ARRAY AND GUESSESWRONG SHOULD BE REPORTED HERE FOR THE FIRST TIME
 //THE PROGRAM RUNS THEN IT SHOULD BE REPLACED WITH THE ONE IN ON KEY FUNCTION
 //.join(" ") prints arrays without commas 
-console.log(blankArray.join(" "));
 $("#currentWordshow").text(blankArray.join(" "));
 //GUESSES WRONG ARRAY
-console.log(guessesWrong.join(" "));
 $("#lettersGuessedshow").text(guessesWrong.join(" "));
 //Number of Guesses Remaining
 $("#numberGuessesshow").text(guessesRemaining);
@@ -130,7 +133,6 @@ document.onkeyup = function(event)
 
 	//USER GUESS IS TRUNED TO LOWERCASE
 	userGuess= String.fromCharCode(event.keyCode).toLowerCase();
-	console.log(userGuess);
 
 
 	//BEFORE FUNCTION SO PREVIOUS GUESS DOEN'T AFFECT NEW(IMPORTANT)
@@ -157,15 +159,17 @@ document.onkeyup = function(event)
 			//CHEKING IF USER GUESS IS A LETTER IN THE WORD
 			if(word2Array[i]===userGuess)
 			{
+
+				guessRightSound.play();
 				blankArray[i]=userGuess;
 				lettersGuessed++;
 				match=true;
 			}
 			
 		}
-		//REPORT VALUE OF BLANK ARRAY TO REVEAL ALL THE LETTERS GUESSED IN THE CURRENTWORDSHOWDIV
-		console.log(blankArray.join(" "));
+		//REPORT VALUE OF BLANK ARRAY TO REVEAL ALL THE LETTERS GUESSED IN THE CURRENTWORDSHOWDIV	
 		$("#currentWordshow").text(blankArray.join(" "));
+
 
 	
 		//IF WRONG GUESS SUBTRACT FROM THE GUESSES REMAINDING
@@ -176,11 +180,11 @@ document.onkeyup = function(event)
 			guessesWrong[x]=userGuess;
 			x++;
 			guessesRemaining--;
+			guessWrongSound.play();
 			
 			
 		}
 		//REPORT GUESSES REMAINING HER TO SHOW ALL OF THE LETTERS GUESSED
-		console.log(guessesWrong.join(" "));
 		$("#lettersGuessedshow").text(guessesWrong.join(" "));
 		//Number of Guesses Remaining
 		$("#numberGuessesshow").text(guessesRemaining);
@@ -307,6 +311,7 @@ document.onkeyup = function(event)
 
 			var hintDiv=$("<div>");
 			hintDiv.attr("id","hintDiv");
+			hintSound.play();
 
 			//GIVING THE USER A HINT
 			$("#hintDiv").html("<h1>Hint</h1>");
@@ -352,20 +357,25 @@ document.onkeyup = function(event)
 			x=0;
 			hintcount++;
 			nextWord++;
-			newWord2guess(nextWord);
 			lettersGuessed=0;
 			guessesRemaining=7;
+			
+			winSound.play();
+			newWord2guess(nextWord);
+			
+			
+			
+			
 			$("#winsShow").text(wins);
 			
+			
 			//STARTING NEW WORD NEED TO REPORT BLANK ARRAYS
-			console.log(blankArray.join(" "));
 			$("#currentWordshow").text(blankArray.join(" "));
 			//GUESSES WRONG ARRAY
-			console.log(guessesWrong.join(" "));
 			$("#lettersGuessedshow").text(guessesWrong.join(" "));
 			//Number of Guesses Remaining
 			$("#numberGuessesshow").text(guessesRemaining);	
-			//clearing the canvas
+			
 			//clearing the canvas
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			//CLEARING THE HINT DIV
@@ -376,6 +386,7 @@ document.onkeyup = function(event)
 		//IF PLAYER RUNS OUT OF guesses
 		if (guessesRemaining===0)
 		{
+			lossSound.play();
 			losses++;
 			hintcount++;
 			//ADDING ONE IN ORDER TO ACCESS THE NEXT WORD
@@ -389,10 +400,8 @@ document.onkeyup = function(event)
 			//REINITIALIZING IN ORDER TO GO BACK TO THE START OF THE GUESSEDWORDS ARRAY FOR THE NEW WORD
 			x=0;
 			//STARTING NEW WORD NEED TO REPORT BLANK ARRAYS
-			console.log(blankArray.join(" "));
 			$("#currentWordshow").text(blankArray.join(" "));
 			//GUESSES WRONG ARRAY
-			console.log(guessesWrong.join(" "));
 			$("#lettersGuessedshow").text(guessesWrong.join(" "));
 			//Number of Guesses Remaining
 			$("#numberGuessesshow").text(guessesRemaining);
@@ -417,6 +426,5 @@ document.onkeyup = function(event)
 	
 }//onkey function
 
-//----------------------
 
 
